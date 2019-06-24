@@ -2,9 +2,7 @@
 const fastify = require('fastify')();
 
 //routers
-//fastify.register(require('./routes/users'), { prefix: '/users' });
-fastify.register(require('./routes/users'), { prefix: 'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name' });
-//fastify.register(require('./routes/users'), { prefix: '/lol/summoner/v4/summoners/by-name' });
+fastify.register(require('./routes/users'), { prefix: '/users' });
 
 
 //listener
