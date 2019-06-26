@@ -2,11 +2,12 @@ const request = require('request-promise')
 
 async function routes (fastify, options) {
 
-
+    
     var sourceFile = require('../secretkey.js');
+    //you must change sourceFile.key to your api key :) 
     let api_key = sourceFile.key;
     var summonerName = 'Ramang';
-    // GET /users/:id
+    // GET /users/:summonerName
 
     fastify.get('/:summonerName', async (req, res) => {
         const data = await request({
