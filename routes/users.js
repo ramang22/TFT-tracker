@@ -65,16 +65,21 @@ module.exports = routes;
 
 let countWinsInGame = function(gameID, summonerName){
     return new Promise(function (resolve, reject){
-        const match = await request({
-            method: 'GET',
-            uri: `https://eun1.api.riotgames.com/lol/match/v4/matches/${gameID}`,
-            qs: {
-                api_key: api_key,
-            },
-            json: true,
-        })
-        resolve(Console.log("ok"));
-        reject(Console.log("not ok"));
+        try {
+            const match = await request({
+                method: 'GET',
+                uri: `https://eun1.api.riotgames.com/lol/match/v4/matches/${gameID}`,
+                qs: {
+                    api_key: api_key,
+                },
+                json: true,
+            })
+            resolve(Console.log("ok"));
+        }catch {
+            reject(Console.log("not ok"));
+        }
+       
+        
         // let participantID = 0;
         // match.participantIdentities.forEach(function(player){
         //     if (player.summonerName == summonerName){
