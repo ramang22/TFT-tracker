@@ -37,7 +37,7 @@ async function routes (fastify, options) {
     })
 
     //filter games, save only game where player is playing adc
-    let onlyADCgames = new Array();
+    let onlyADCgames = [];
     matchHisotry.matches.forEach(function(element) {
         if (element.lane == "BOTTOM"){
             onlyADCgames.push(element);
@@ -48,11 +48,40 @@ async function routes (fastify, options) {
     
     let win = 0;
     let lose = 0;
-    let promises = [];
-    onlyADCgames.forEach(function(element){
-        promises.push(countWinsInGame(element.gameId,summoner.name));
-    });
-     
+    let idkev = [2200049983,2199420776,2199393490, 2192825527,2192799195,]
+
+
+    const promises = idkev.map((data) => {
+       const match = request({
+                        method: 'GET',
+                        uri: `https://eun1.api.riotgames.com/lol/match/v4/matches/${data}`,
+                        qs: {
+                            api_key: api_key,
+                        },
+                        json: true,
+                        
+                    })
+                    res.send(match)
+                    // let participantID = 0;
+                    // match.participantIdentities.forEach(function(player){
+                        
+                    //     if (player.summonerName == summonerName){
+                    //         participantID = player.participantId;
+                    //     }
+                    // });
+                    
+                    // match.participants.forEach(function(participant){
+                    //     if(participant.participantId == participantID){
+                    //         if (participant.stats == true) {
+                    //             win++;
+                    //         }else {
+                    //             lose++;
+                    //         }
+                    //     }
+                    // });
+                 
+      })  
+    
     //res.send(matchHisotry);
     
     });
@@ -62,40 +91,3 @@ async function routes (fastify, options) {
 
 
 module.exports = routes;
-
-let countWinsInGame = function(gameID, summonerName){
-    return new Promise(function (resolve, reject){
-        try {
-            const match = await request({
-                method: 'GET',
-                uri: `https://eun1.api.riotgames.com/lol/match/v4/matches/${gameID}`,
-                qs: {
-                    api_key: api_key,
-                },
-                json: true,
-            })
-            resolve(Console.log("ok"));
-        }catch {
-            reject(Console.log("not ok"));
-        }
-       
-        
-        // let participantID = 0;
-        // match.participantIdentities.forEach(function(player){
-        //     if (player.summonerName == summonerName){
-        //         participantID = player.participantId;
-        //         break;
-        //     }
-        // });
-        // match.participants.forEach(function(participant){
-        //     if(participant.participantId == participantID){
-        //         if (participant.stats == true) {
-        //             win++;
-        //         }else {
-        //             lose++;
-        //         }
-        //     }
-        // });
-    });
-    
-}
