@@ -1,5 +1,5 @@
 //imports
-const fastify = require('fastify')();
+const fastify = require('fastify')()
 
 //routers
 fastify.register(require('./routes/users'), { prefix: '/users' });
