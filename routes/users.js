@@ -1,4 +1,5 @@
 const request = require('request-promise')
+var _ = require('lodash');
 
 async function routes (fastify, options) {
 
@@ -48,41 +49,42 @@ async function routes (fastify, options) {
     
     let win = 0;
     let lose = 0;
-    let idkev = [2200049983,2199420776,2199393490, 2192825527,2192799195,]
-
-
+    let idkev = [2200049983,2199420776,2199393490, 2192825527,2192799195,] 
     const promises = idkev.map((data) => {
-       const match = request({
+        
+       return request({
                         method: 'GET',
                         uri: `https://eun1.api.riotgames.com/lol/match/v4/matches/${data}`,
                         qs: {
                             api_key: api_key,
                         },
                         json: true,
+                        timeout : 10000,
                         
                     })
-                    res.send(match)
-                    // let participantID = 0;
-                    // match.participantIdentities.forEach(function(player){
-                        
-                    //     if (player.summonerName == summonerName){
-                    //         participantID = player.participantId;
-                    //     }
-                    // });
-                    
-                    // match.participants.forEach(function(participant){
-                    //     if(participant.participantId == participantID){
-                    //         if (participant.stats == true) {
-                    //             win++;
-                    //         }else {
-                    //             lose++;
-                    //         }
-                    //     }
-                    // });
                  
       })  
-    
-    //res.send(matchHisotry);
+      
+    const arrayOfResponses = await Promise.all(promises)
+    for(var i in arrayOfResponses){
+        let participantID = 0;
+        arrayOfResponses[i].participantIdentities.forEach(function(player){
+            if (player.player.summonerName === summonerName){
+                participantID = player.participantId;
+                
+            }
+           
+        });
+       
+        arrayOfResponses[i].participants.forEach(function(player){
+            console.log(player.participantId)
+            if (player.participantId === participantID){
+                    player.stats.win === true ? win++ : lose++;
+            }
+        });
+    }
+    console.log(win + " " + lose);
+    res.send(arrayOfResponses[0]);
     
     });
    
