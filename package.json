@@ -1,0 +1,17 @@
+{
+  "name": "riotAPInodeServer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "fastify": "^2.6.0",
+    "request": "latest",
+    "request-promise": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

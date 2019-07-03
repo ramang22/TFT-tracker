@@ -3,7 +3,8 @@ const _ = require('lodash')
 const sourceFile = require('../secretkey.js')
 const { getMatch, wait } = require('../API/riotGamesAPI')
 
-const routes = (fastify) => {
+
+async function routes (fastify, options) {
 
     //you must change sourceFile.key to your api key :)
     const api_key = sourceFile.API_KEY
