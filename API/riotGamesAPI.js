@@ -1,15 +1,15 @@
-const _ = require('lodash');
-const request = require('request-promise');
-const sourceFile = require('../secretkey.js');
-const api_key = sourceFile.API_KEY;
+const _ = require('lodash')
+const request = require('request-promise')
+const sourceFile = require('../secretkey.js')
+const api_key = sourceFile.API_KEY
 
 const getMatch = (data) => {
-    console.log("Get Match "+data);
+    console.log('Get Match '+data)
     return request({
         method: 'GET',
         uri: `https://eun1.api.riotgames.com/lol/match/v4/matches/${data.gameId}`,
         qs: {
-            api_key: api_key,
+            api_key,
         },
         json: true,
     })
@@ -21,4 +21,4 @@ const wait = (milliseconds) => {
     })
 }
 
-module.exports = { getMatch, wait };
+module.exports = { getMatch, wait }

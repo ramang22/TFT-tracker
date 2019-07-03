@@ -78,7 +78,7 @@ const routes = (fastify) => {
     //     });
     // }
     //console.log(win + " " + lose);
-    res.send(arrayOfResponses)
+   // res.send(arrayOfResponses)
 
     })
 
