@@ -20,4 +20,15 @@ const wait = (milliseconds) => {
     })
 }
 
-module.exports = { getMatch, wait }
+const latest100games = (summoner) => {
+    return request({
+        method: 'GET',
+        uri: `https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${summoner.accId}`,
+        qs: {
+            api_key,
+        },
+        json: true,
+    })
+}
+
+module.exports = { getMatch, wait, latest100games }

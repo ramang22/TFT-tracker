@@ -1,7 +1,7 @@
 const request = require('request-promise')
 const _ = require('lodash')
 const sourceFile = require('../secretkey.js')
-const { getMatch, wait } = require('../API/riotGamesAPI')
+const { getMatch, wait, latest100games } = require('../API/riotGamesAPI')
 
 async function routes (fastify) {
 
@@ -34,6 +34,8 @@ async function routes (fastify) {
         },
         json: true,
     })
+    //const games = latest100games(summoner)
+    //const onlyADCgames2 = games.matches.filter(el => el.lane === 'BOTTOM')
 
     const onlyADCgames = matchHisotry.matches.filter(el => el.lane === 'BOTTOM')
     const first20games = _.slice(onlyADCgames, 0, 20)
