@@ -4,7 +4,6 @@ const sourceFile = require('../secretkey.js')
 const api_key = sourceFile.API_KEY
 
 const getMatch = (data) => {
-    console.log('Get Match '+data)
     return request({
         method: 'GET',
         uri: `https://eun1.api.riotgames.com/lol/match/v4/matches/${data.gameId}`,

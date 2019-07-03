@@ -3,12 +3,10 @@ const _ = require('lodash')
 const sourceFile = require('../secretkey.js')
 const { getMatch, wait } = require('../API/riotGamesAPI')
 
-// eslint-disable-next-line func-style
 async function routes (fastify) {
 
     //you must change sourceFile.key to your api key :)
     const api_key = sourceFile.API_KEY
-    let summoner = {}
     // GET /users/:summonerName
 
     fastify.get('/:summonerName', async (req, res) => {
@@ -21,7 +19,7 @@ async function routes (fastify) {
             json: true,
         })
     //store useful data from summoner get
-    summoner = {
+    const summoner = {
         id: data.id,
         accId: data.accountId,
         name: data.name
@@ -37,48 +35,39 @@ async function routes (fastify) {
         json: true,
     })
 
-    //filter games, save only game where player is playing adc
-    // let onlyADCgames = [];
-    // matchHisotry.matches.forEach(function(element) {
-    //     if (element.lane == "BOTTOM"){
-    //         onlyADCgames.push(element);
-    //     }
-
-    //   });
-
     const onlyADCgames = matchHisotry.matches.filter(el => el.lane === 'BOTTOM')
+    const first20games = _.slice(onlyADCgames, 0, 20)
 
-
-    let win = 0
-    let lose = 0
-
-
-    // var throttled = _.throttle(getMatch, 1000);
-
-    const promises = onlyADCgames.map(async (game, i) => {
-        await wait(100 * i)
+    const promises = first20games.map(async (game, i) => {
+        await wait(50 * i)
         return getMatch(game)
     })
 
     const arrayOfResponses = await Promise.all(promises)
-    // for(var i in arrayOfResponses){
-    //     let participantID = 0;
-    //     arrayOfResponses[i].participantIdentities.forEach(function(player){
-    //         if (player.player.summonerName === summonerName){
-    //             participantID = player.participantId;
+    let participantID = 0
+    let wins = 0
+    let loses = 0
 
-    //         }
+    arrayOfResponses.forEach((match) => {
+        match.participantIdentities.forEach((player) => {
+            if (player.player.summonerName === summoner.name) {
+                participantID = player.participantId
+            }
+        })
+        match.participants.forEach((player) => {
+            if (player.participantId === participantID) {
+                    player.stats.win === true ? wins++ : loses++
+            }
+        })
+    })
+    let returnStat = {
+        win: wins,
+        lose: loses,
+        winrate: (100/(wins+loses))*wins,
+        name: summoner.name
 
-    //     });
-
-    //     arrayOfResponses[i].participants.forEach(function(player){
-    //         if (player.participantId === participantID){
-    //                 player.stats.win === true ? win++ : lose++;
-    //         }
-    //     });
-    // }
-    //console.log(win + " " + lose);
-    res.send(arrayOfResponses)
+    }
+    res.send(returnStat)
 
     })
 
