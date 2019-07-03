@@ -3,12 +3,11 @@ const _ = require('lodash')
 const sourceFile = require('../secretkey.js')
 const { getMatch, wait } = require('../API/riotGamesAPI')
 
-
-async function routes (fastify, options) {
+// eslint-disable-next-line func-style
+async function routes (fastify) {
 
     //you must change sourceFile.key to your api key :)
     const api_key = sourceFile.API_KEY
-
     let summoner = {}
     // GET /users/:summonerName
 
@@ -79,7 +78,7 @@ async function routes (fastify, options) {
     //     });
     // }
     //console.log(win + " " + lose);
-   // res.send(arrayOfResponses)
+    res.send(arrayOfResponses)
 
     })
 
