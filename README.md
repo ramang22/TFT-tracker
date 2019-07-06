@@ -23,3 +23,6 @@ https://github.com/Canisback/pantheon
 
 ### no clue atm
 https://github.com/Pupix/rift-explorer
+
+### ideas 
+https://docs.google.com/document/d/1kj31M5XFwR9XKXo_H6KMMUIQzp84xUuIsXHlCDgaKr8/edit?usp=sharing
