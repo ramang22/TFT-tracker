@@ -1,5 +1,5 @@
 {
-  "name": "riotAPInodeServer",
+  "name": "riot_api_node_server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,8 @@
     "eslint": "^6.0.1",
     "fastify": "^2.6.0",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "simple-node-logger": "^18.12.22"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
