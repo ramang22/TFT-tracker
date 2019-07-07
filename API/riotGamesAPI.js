@@ -1,8 +1,7 @@
-const _ = require('lodash');   // ?????????????
+const _ = require('lodash');
 const request = require('request-promise');
 const sourceFile = require('../utils/secretkey.js');
 const api_key = sourceFile.API_KEY;
-
 const log = require('../utils/logUtils').createLogger();
 
 exports.getMatch = (gameId) => {
@@ -14,15 +13,11 @@ exports.summoner =  (summonerName) => {
     return httpRequest(`https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}`, 'GET')
 };
 
-// ??????????????
-
 exports.wait = (milliseconds) => {
     return new Promise(resolve => {
         _.delay(resolve, milliseconds)
     })
 };
-
-// ??????????????
 
 exports.latest100games = (encryptedAccountId) => {
     log.debug(`call on /match/v4/matchlists/by-account/${encryptedAccountId}`);
@@ -43,12 +38,12 @@ async function httpRequest(url, protocol) {
             resolveWithFullResponse: true,
             json: true,
         });
-        log.debug("answer: ");
-        log.debug(result);
+        //log.debug("answer: ");
+        //log.debug(result);
         return Promise.resolve(result.body);
     } catch (err) {
-        log.error("answer: ");
-        log.error(err);
+        //log.error("answer: ");
+        //log.error(err);
         return Promise.reject(err)
     }
 }
