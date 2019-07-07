@@ -10,7 +10,8 @@
     "fastify": "^2.6.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "simple-node-logger": "^18.12.22"
+    "simple-node-logger": "^18.12.22",
+    "got": "^9.6.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
