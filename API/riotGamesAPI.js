@@ -1,64 +1,21 @@
-const _ = require('lodash');   // ?????????????
-const sourceFile = require('../utils/secretkey.js');
-const api_key = sourceFile.API_KEY;
-const got = require('got');
-
-const log = require('../utils/logUtils').createLogger();
-
-/**
- *
- * @param gameId {array}
- * @return {Promise<*>}
- */
-exports.getMatch = (gameId) => {
-    let urls = parseUrl(`https://eun1.api.riotgames.com/lol/match/v4/matches/`, gameId);
-    return httpRequest(urls);
-};
-/**
- *
- * @param summonerName {array}
- * @return {Promise<*>}
- */
-exports.summoner = async (summonerName) => {
-    let urls = parseUrl(`https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/`, summonerName);
-    return await httpRequest(urls)
-};
-
-/**
- *
- * @param encryptedAccountId {array}
- * @return {Promise<*>}
- */
-exports.latest100games = (encryptedAccountId) => {
-    let urls = parseUrl(`https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/`, encryptedAccountId);
-    return httpRequest(urls)
-};
+const _ = require('lodash')
+const sourceFile = require('../utils/secretkey.js')
+const api_key = sourceFile.API_KEY
+const got = require('got')
+const log = require('../utils/logUtils').createLogger()
 
 /**
  *
  * @param url
  * @param array {array}
  */
-function parseUrl(url, array) {
-    let urls = [];
+function parseUrl (url, array) {
+    let urls = []
     for (let value of array) {
         urls.push(url + value)
     }
-    return urls;
+    return urls
 }
-
-
-// ??????????????
-
-exports.wait = (milliseconds) => {
-    return new Promise(resolve => {
-        _.delay(resolve, milliseconds)
-    })
-};
-
-// ??????????????
-
-
 
 /**
  *
@@ -70,45 +27,89 @@ const httpRequest = async function (urls) {
         log.error('!!!Please Add API KEY to secretkey.js!!!')
     }
 
-    let promises = [];
+    let promises = []
     for (let url of urls) {
         let prom = new Promise((resolve, reject) => {
 
-            log.info(`call on ${url}`);
+            log.info(`call on ${url}`)
             try {
                 let result = got.get(url, {
                     headers: {
-                        "X-Riot-Token": api_key
+                        'X-Riot-Token': api_key
                     },
                     json: true,
-                });
+                })
                 resolve(result)
             } catch (e) {
                 reject(e)
             }
-        });
+        })
         promises.push(prom)
     }
 
-    let resultTotal = null;
+    let resultTotal = null
     await Promise.all(promises).then((result) => {
-        resultTotal = result;
-        log.info(`all CALL OK`)
+        resultTotal = result
+        log.info('all CALL OK')
 
     }).catch((err) => {
-        log.error(err.message);
-        log.error(err);
+        log.error(err.message)
+        log.error(err)
         //TODO handle our error like api rate limit
-        return err;
-    });
+        return err
+    })
 
     if (resultTotal.length === 1) {
         return resultTotal[0].body
     } else {
-        let result = [];
+        let result = []
         for (let item of resultTotal) {
-            result.push(item.body);
+            result.push(item.body)
         }
-        return result;
+        return result
     }
-};
+}
+
+/**
+ *
+ * @param gameId {array}
+ *
+ * @return {Promise<*>}
+*/
+exports.getMatch = (gameId) => {
+    let urls = parseUrl('https://eun1.api.riotgames.com/lol/match/v4/matches/', gameId)
+    return httpRequest(urls)
+}
+
+/**
+ *
+ * @param summonerName {array}
+ * @return {Promise<*>}
+ */
+// exports.summoner = async (summonerName) => {
+//     let urls = parseUrl('https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/', summonerName)
+//     return await httpRequest(urls)
+// }
+//TODO toto musi byt async? lebo ide to aj takto
+exports.summoner = (summonerName) => {
+    let urls = parseUrl('https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/', summonerName)
+    return httpRequest(urls)
+}
+
+/**
+ *
+ * @param encryptedAccountId {array}
+ * @return {Promise<*>}
+ */
+exports.latest100games = (encryptedAccountId) => {
+    let urls = parseUrl('https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/', encryptedAccountId)
+    return httpRequest(urls)
+}
+
+exports.wait = (milliseconds) => {
+    return new Promise(resolve => {
+        _.delay(resolve, milliseconds)
+    })
+}
+
+
