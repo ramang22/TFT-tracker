@@ -44,12 +44,13 @@ async function routes (fastify) {
             name: summoner.name
 
         }
+        res.header("Access-Control-Allow-Origin","*")
+        res.header("Access-Control-Allow-Headers", "X-Requested-With")
         res.send(returnStat)
 
     })
 
 
 }
-
 
 module.exports = routes
