@@ -1,16 +1,10 @@
 <template>
-  <footer>
-   Powered by kappa .
-  </footer>
+  <footer>Powered by kappa .</footer>
 </template>
 
 <script>
-
-export default {
-
-}
+export default {};
 </script>
-
 
 <style scoped>
 footer {
@@ -19,6 +13,6 @@ footer {
   margin-top: 20px;
   padding: 20px;
   text-align: center;
-  width:100%;
+  width: 100%;
 }
 </style>

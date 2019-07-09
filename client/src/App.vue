@@ -1,26 +1,24 @@
 <template>
   <div id="app">
     <Navigation />
-    <img src="./assets/Teamfight_Tactics_Logo.png">
+
     <FindSummoner />
     <FooterComponent />
   </div>
 </template>
 
 <script>
-
+//<img src="./assets/Teamfight_Tactics_Logo.png">
 import Navigation from './components/Navigation'
 import FindSummoner from './components/FindSummoner'
 import FooterComponent from './components/Footer'
-import summonerDetail from './components/summonerDetail'
 
 export default {
   name: 'app',
   components: {
     Navigation,
     FindSummoner,
-    FooterComponent,
-    summonerDetail
+    FooterComponent
   }
 }
 </script>
