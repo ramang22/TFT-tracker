@@ -1,5 +1,6 @@
 <template>
   <div>
+      <img class=logo src="../assets/tftlogo.png">
     <div v-if="searchPressed === true">
       <h3>Summoner : {{summoner.name}}</h3>
       <h3>Win rate : {{summoner.winrate}}%</h3>
@@ -33,5 +34,9 @@ export default {
 };
 </script>
 <style scoped>
+.logo {
+     width: 400px;
+    height: auto;
+}
 </style>
 

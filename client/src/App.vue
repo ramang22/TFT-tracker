@@ -1,23 +1,22 @@
 <template>
   <div id="app">
-    <Navigation />
 
-    <FindSummoner />
+    <Navigation />
+    <router-view></router-view>
     <FooterComponent />
+
   </div>
 </template>
 
 <script>
-//<img src="./assets/Teamfight_Tactics_Logo.png">
+
 import Navigation from './components/Navigation'
-import FindSummoner from './components/FindSummoner'
 import FooterComponent from './components/Footer'
 
 export default {
   name: 'app',
   components: {
     Navigation,
-    FindSummoner,
     FooterComponent
   }
 }
