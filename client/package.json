@@ -7,14 +7,15 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-   "lint": "eslint --ext .js,.vue src",
+    "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "standard": "^12.0.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-circle-progress": "^1.2.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
