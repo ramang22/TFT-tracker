@@ -2,7 +2,7 @@
   <div>
     <vue-circle
       :progress="winrate"
-      :size="150"
+      :size="size"
       :reverse="false"
       line-cap="round"
       :fill="fill"
@@ -31,7 +31,8 @@ export default {
   props: {
     winrate: String,
     color: String,
-    msg: String
+    msg: String,
+    size: String
   },
   components: {
     VueCircle

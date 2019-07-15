@@ -4,23 +4,7 @@
       <div class="flex-container">
         <div style="flex-grow: 2" class="info">
           <h3>Summoner : {{summoner.name}}</h3>
-          <vue-circle
-            :progress="summoner.winrate"
-            :size="150"
-            :reverse="false"
-            line-cap="round"
-            :fill="fill"
-            empty-fill="rgba(0, 0, 0, .1)"
-            :animation-start-value="0.0"
-            :start-angle="0"
-            insert-mode="append"
-            :thickness="5"
-            :show-percent="true"
-            @vue-circle-progress="progress"
-            @vue-circle-end="progress_end"
-          >
-            <p>Winrate</p>
-          </vue-circle>
+          <CircleGraph color="orange" v-bind:winrate="summoner.winrate" size="150" />
           <h3>Wins : {{summoner.win}}</h3>
           <h3>Loses : {{summoner.lose}}</h3>
         </div>
@@ -34,61 +18,17 @@
             </tr>
             <tr>
               <td>
-                <vue-circle
-                  :progress="20"
-                  :size="80"
-                  :reverse="false"
-                  line-cap="round"
-                  :fill="fill"
-                  empty-fill="rgba(0, 0, 0, .1)"
-                  :animation-start-value="0.0"
-                  :start-angle="0"
-                  insert-mode="append"
-                  :thickness="5"
-                  :show-percent="true"
-                  @vue-circle-progress="progress"
-                  @vue-circle-end="progress_end"
-                ></vue-circle>
+                <CircleGraph color="orange" winrate="20" size="80" />
               </td>
               <td>
-                <vue-circle
-                  :progress="40"
-                  :size="80"
-                  :reverse="false"
-                  line-cap="round"
-                  :fill="fill"
-                  empty-fill="rgba(0, 0, 0, .1)"
-                  :animation-start-value="0.0"
-                  :start-angle="0"
-                  insert-mode="append"
-                  :thickness="5"
-                  :show-percent="true"
-                  @vue-circle-progress="progress"
-                  @vue-circle-end="progress_end"
-                ></vue-circle>
+                <CircleGraph color="red" winrate="40" size="80" />
               </td>
               <td>
-                <vue-circle
-                  :progress="60"
-                  :size="80"
-                  :reverse="false"
-                  line-cap="round"
-                  :fill="fill"
-                  empty-fill="rgba(0, 0, 0, .1)"
-                  :animation-start-value="0.0"
-                  :start-angle="0"
-                  insert-mode="append"
-                  :thickness="5"
-                  :show-percent="true"
-                  @vue-circle-progress="progress"
-                  @vue-circle-end="progress_end"
-                ></vue-circle>
+                <CircleGraph color="red" winrate="60" size="80" />
               </td>
             </tr>
           </table>
           <h2>Match history</h2>
-          <CircleGraph color="red" winrate="60" msg="tset" />
-          <p></p>
         </div>
       </div>
     </div>
@@ -113,7 +53,7 @@ export default {
     return {
       searchPressed: false,
       summoner: {},
-      fill: { gradient: ["yellow"] }
+      fill: { gradient: ["yellow", "red", "orange"] }
     };
   },
   components: {
