@@ -87,6 +87,8 @@
             </tr>
           </table>
           <h2>Match history</h2>
+          <CircleGraph color="red" winrate="60" msg="tset" />
+          <p></p>
         </div>
       </div>
     </div>
@@ -103,6 +105,7 @@
 
 <script>
 import summonerStore from "../stores/summonerStore";
+import CircleGraph from "../components/CircleGraph";
 import axios from "axios";
 import VueCircle from "vue2-circle-progress";
 export default {
@@ -114,7 +117,8 @@ export default {
     };
   },
   components: {
-    VueCircle
+    VueCircle,
+    CircleGraph
   },
 
   methods: {
@@ -141,7 +145,7 @@ export default {
   display: flex;
   align-items: stretch;
 }
-table{
+table {
   width: 100%;
 }
 </style>
