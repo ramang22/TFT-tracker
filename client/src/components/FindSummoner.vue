@@ -29,7 +29,7 @@
                <th colspan="2" >Best Compositions</th>
              </tr>
              <tr>
-               <td>Assasins </td>
+               <td>Assassins </td>
                <td>70%win</td>
              </tr>
              <tr>
@@ -39,9 +39,9 @@
             </table>
           </div>
         </div>
-        
-          
-      
+
+
+
         <div style="flex-grow: 8" class="stats">
           <h3>Player Stats</h3>
           <table>
@@ -141,5 +141,3 @@ h3 {
   margin-bottom: 3%;
 }
 </style>
-
-
