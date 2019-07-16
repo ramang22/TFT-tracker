@@ -1,10 +1,29 @@
 <template>
   <div>
     <div v-if="searchPressed === true">
+      <div class="flex-container" id="playerNavBar">
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <img class="profilepic" src="../assets/profilepic.png" />
+                    </td>
+                    <td>
+                        <h3>{{summoner.name}}</h3>
+                         <button>Live Game</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+
+        </div>
+
+      </div>
       <div class="flex-container">
         <div style="flex-grow: 2" class="info">
-          <h3>Summoner : {{summoner.name}}</h3>
-          <CircleGraph color="orange" v-bind:winrate="summoner.winrate" size="150" />
+          <CircleGraph color="orange" v-bind:winrate="summoner.winrate" size="150" msg="Winrate"/>
+          <h3>Rank : Master</h3>
           <h3>Wins : {{summoner.win}}</h3>
           <h3>Loses : {{summoner.lose}}</h3>
         </div>
@@ -13,7 +32,7 @@
           <table>
             <tr>
               <th>TOP 1</th>
-              <th>TOP 3</th>
+              <th>TOP 4</th>
               <th>LOSE</th>
             </tr>
             <tr>
@@ -36,6 +55,12 @@
     <div v-else>
       <img class="logo" src="../assets/tftlogo.jpeg" />
       <div>
+        <select>
+          <option value="eune">EUNE</option>
+          <option value="euw">EUW</option>
+          <option value="na">NA</option>
+          <option value="kr">KR</option>
+        </select>
         <input v-model="inputSummoner" v-on:keyup.13="findSummoner(inputSummoner)" />
         <button v-on:click="findSummoner(inputSummoner)">Find Summoner</button>
       </div>
@@ -77,6 +102,10 @@ export default {
 };
 </script>
 <style scoped>
+.profilepic{
+    height: 80px;
+    width: auto;
+}
 .logo {
   height: 200px;
   width: auto;
@@ -88,5 +117,11 @@ export default {
 table {
   width: 100%;
 }
+
+#playerNavBar {
+  background-color:gray;
+  margin-bottom: 3%;
+}
 </style>
+
 

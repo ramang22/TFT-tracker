@@ -16,7 +16,6 @@ export default {
 nav {
   background: #333;
   color: white;
-  margin-bottom: 20px;
   padding: 20px 10%;
   width:80%;
   text-align: center;
