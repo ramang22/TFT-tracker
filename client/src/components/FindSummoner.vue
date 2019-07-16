@@ -3,37 +3,52 @@
     <div v-if="searchPressed === true">
       <div class="flex-container" id="playerNavBar">
         <div>
-            <table>
-                <tr>
-                    <td>
-                        <img class="profilepic" src="../assets/profilepic.png" />
-                    </td>
-                    <td>
-                        <h3>{{summoner.name}}</h3>
-                         <button>Live Game</button>
-                    </td>
-                </tr>
-            </table>
+          <table>
+            <tr>
+              <td>
+                <img class="profilepic" src="../assets/profilepic.png" />
+              </td>
+              <td>
+                <h3>{{summoner.name}}</h3>
+                <button>Live Game</button>
+              </td>
+            </tr>
+          </table>
         </div>
-        <div>
-
-        </div>
-
+        <div></div>
       </div>
       <div class="flex-container">
         <div style="flex-grow: 2" class="info">
-          <CircleGraph color="orange" v-bind:winrate="summoner.winrate" size="150" msg="Winrate"/>
+          <CircleGraph color="orange" v-bind:winrate="summoner.winrate" size="150" msg="Winrate" />
           <h3>Rank : Master</h3>
           <h3>Wins : {{summoner.win}}</h3>
           <h3>Loses : {{summoner.lose}}</h3>
+          <div>
+            <table>
+             <tr>
+               <th colspan="2" >Best Compositions</th>
+             </tr>
+             <tr>
+               <td>Assasins </td>
+               <td>70%win</td>
+             </tr>
+             <tr>
+               <td>Kappas </td>
+               <td>30%win</td>
+             </tr>
+            </table>
+          </div>
         </div>
+        
+          
+      
         <div style="flex-grow: 8" class="stats">
           <h3>Player Stats</h3>
           <table>
             <tr>
               <th>TOP 1</th>
               <th>TOP 4</th>
-              <th>LOSE</th>
+              <th>AVG. RANK</th>
             </tr>
             <tr>
               <td>
@@ -43,7 +58,7 @@
                 <CircleGraph color="red" winrate="40" size="80" />
               </td>
               <td>
-                <CircleGraph color="red" winrate="60" size="80" />
+                <h2>2</h2>
               </td>
             </tr>
           </table>
@@ -102,9 +117,9 @@ export default {
 };
 </script>
 <style scoped>
-.profilepic{
-    height: 80px;
-    width: auto;
+.profilepic {
+  height: 80px;
+  width: auto;
 }
 .logo {
   height: 200px;
@@ -116,10 +131,13 @@ export default {
 }
 table {
   width: 100%;
-}
 
+}
+h3 {
+  margin : 3%;
+}
 #playerNavBar {
-  background-color:gray;
+  background-color: gray;
   margin-bottom: 3%;
 }
 </style>
