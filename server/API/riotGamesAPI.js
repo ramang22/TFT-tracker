@@ -14,6 +14,7 @@ function parseUrl (url, array) {
     for (let value of array) {
         urls.push(url + value)
     }
+    console.log(urls);
     return urls
 }
 
@@ -76,8 +77,8 @@ const httpRequest = async function (urls) {
  *
  * @return {Promise<*>}
 */
-exports.getMatch = (gameId) => {
-    let urls = parseUrl('https://eun1.api.riotgames.com/lol/match/v4/matches/', gameId)
+exports.getMatch = (gameId,server) => {
+    let urls = parseUrl('https://'+server+'.api.riotgames.com/lol/match/v4/matches/', gameId)
     return httpRequest(urls)
 }
 
@@ -86,13 +87,8 @@ exports.getMatch = (gameId) => {
  * @param summonerName {array}
  * @return {Promise<*>}
  */
-// exports.summoner = async (summonerName) => {
-//     let urls = parseUrl('https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/', summonerName)
-//     return await httpRequest(urls)
-// }
-//TODO toto musi byt async? lebo ide to aj takto
-exports.summoner = (summonerName) => {
-    let urls = parseUrl('https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/', summonerName)
+exports.summoner = (summonerName,server) => {
+    let urls = parseUrl('https://'+server+'.api.riotgames.com/lol/summoner/v4/summoners/by-name/', summonerName)
     return httpRequest(urls)
 }
 
@@ -101,8 +97,8 @@ exports.summoner = (summonerName) => {
  * @param encryptedAccountId {array}
  * @return {Promise<*>}
  */
-exports.latest100games = (encryptedAccountId) => {
-    let urls = parseUrl('https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/', encryptedAccountId)
+exports.latest100games = (encryptedAccountId,server) => {
+    let urls = parseUrl('https://'+server+'.api.riotgames.com/lol/match/v4/matchlists/by-account/', encryptedAccountId)
     return httpRequest(urls)
 }
 

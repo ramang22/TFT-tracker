@@ -25,22 +25,20 @@
           <h3>Loses : {{summoner.lose}}</h3>
           <div>
             <table>
-             <tr>
-               <th colspan="2" >Best Compositions</th>
-             </tr>
-             <tr>
-               <td>Assassins </td>
-               <td>70%win</td>
-             </tr>
-             <tr>
-               <td>Kappas </td>
-               <td>30%win</td>
-             </tr>
+              <tr>
+                <th colspan="2">Best Compositions</th>
+              </tr>
+              <tr>
+                <td>Assassins</td>
+                <td>70%win</td>
+              </tr>
+              <tr>
+                <td>Kappas</td>
+                <td>30%win</td>
+              </tr>
             </table>
           </div>
         </div>
-
-
 
         <div style="flex-grow: 8" class="stats">
           <h3>Player Stats</h3>
@@ -70,14 +68,14 @@
     <div v-else>
       <img class="logo" src="../assets/tftlogo.jpeg" />
       <div>
-        <select>
-          <option value="eune">EUNE</option>
-          <option value="euw">EUW</option>
-          <option value="na">NA</option>
+        <select v-model="region">
+          <option value="eun1">EUNE</option>
+          <option value="euw1">EUW</option>
+          <option value="na1">NA</option>
           <option value="kr">KR</option>
         </select>
-        <input v-model="inputSummoner" v-on:keyup.13="findSummoner(inputSummoner)" />
-        <button v-on:click="findSummoner(inputSummoner)">Find Summoner</button>
+        <input v-model="inputSummoner" v-on:keyup.13="findSummoner(inputSummoner,region)" />
+        <button v-on:click="findSummoner(inputSummoner,region)">Find Summoner</button>
       </div>
     </div>
   </div>
@@ -102,8 +100,9 @@ export default {
   },
 
   methods: {
-    async findSummoner(name) {
-      const response = await axios.get("http://localhost:3000/users/" + name);
+    async findSummoner(name,region) {
+      console.log(region);
+      const response = await axios.get("http://localhost:3000/users/" + name+"/"+region);
       this.summoner = summonerStore.methods.saveSummoner(response);
       this.searchPressed = true;
     },
@@ -131,10 +130,9 @@ export default {
 }
 table {
   width: 100%;
-
 }
 h3 {
-  margin : 3%;
+  margin: 3%;
 }
 #playerNavBar {
   background-color: gray;
