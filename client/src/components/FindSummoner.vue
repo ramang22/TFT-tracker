@@ -19,8 +19,8 @@
       </div>
       <div class="flex-container">
         <div style="flex-grow: 2" class="info">
-          <img class="rankpic"  v-bind:src='"../assets/emblems/Emblem_" + summoner.tier +".png"' />
-          <h3>Rank : {{summoner.tier}} {{summoner.rank}} {{summoner.leaguePoints}}</h3>
+          <img class="rankpic"  v-bind:src='"../assets/emblems/" + summoner.tier +"_"+summoner.rank+".png"' />
+          <h3>{{summoner.tier.charAt(0).toUpperCase()}}{{summoner.tier.slice(1)}} {{summoner.rank}} {{summoner.leaguePoints}}lp</h3>
           <h3>Wins : {{summoner.win}}</h3>
           <h3>Loses : {{summoner.lose}}</h3>
           <div>
