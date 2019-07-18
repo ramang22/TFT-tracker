@@ -82,6 +82,10 @@ exports.getMatch = (gameId,server) => {
     return httpRequest(urls)
 }
 
+exports.getAllLeagueEntries = (encryptedSummonerID,server) => {
+    let urls = parseUrl('https://'+server+'.api.riotgames.com/lol/league/v4/entries/by-summoner/', encryptedSummonerID)
+    return httpRequest(urls)
+}
 /**
  *
  * @param summonerName {array}

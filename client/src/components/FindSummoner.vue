@@ -19,8 +19,8 @@
       </div>
       <div class="flex-container">
         <div style="flex-grow: 2" class="info">
-          <CircleGraph color="orange" v-bind:winrate="summoner.winrate" size="150" msg="Winrate" />
-          <h3>Rank : Master</h3>
+          <img class="rankpic"  v-bind:src='"../assets/emblems/Emblem_" + summoner.tier +".png"' />
+          <h3>Rank : {{summoner.tier}} {{summoner.rank}} {{summoner.leaguePoints}}</h3>
           <h3>Wins : {{summoner.win}}</h3>
           <h3>Loses : {{summoner.lose}}</h3>
           <div>
@@ -50,7 +50,7 @@
             </tr>
             <tr>
               <td>
-                <CircleGraph color="orange" winrate="20" size="80" />
+                <CircleGraph color="orange" v-bind:winrate="summoner.winrate" size="80" />
               </td>
               <td>
                 <CircleGraph color="red" winrate="40" size="80" />
@@ -85,39 +85,35 @@
 import summonerStore from "../stores/summonerStore";
 import CircleGraph from "../components/CircleGraph";
 import axios from "axios";
-import VueCircle from "vue2-circle-progress";
+
 export default {
   data() {
     return {
       searchPressed: false,
       summoner: {},
-      fill: { gradient: ["yellow", "red", "orange"] }
     };
   },
   components: {
-    VueCircle,
     CircleGraph
   },
 
   methods: {
     async findSummoner(name,region) {
-      console.log(region);
       const response = await axios.get("http://localhost:3000/users/" + name+"/"+region);
       this.summoner = summonerStore.methods.saveSummoner(response);
       this.searchPressed = true;
-    },
-    progress(event, progress, stepValue) {
-      console.log(stepValue);
-    },
-    progress_end(event) {
-      console.log("Circle progress end");
     }
   }
 };
 </script>
+
 <style scoped>
 .profilepic {
   height: 80px;
+  width: auto;
+}
+.rankpic{
+  height: 150px;
   width: auto;
 }
 .logo {

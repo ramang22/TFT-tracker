@@ -12,8 +12,6 @@
       insert-mode="append"
       :thickness="5"
       :show-percent="true"
-      @vue-circle-progress="progress"
-      @vue-circle-end="progress_end"
     >
       <div v-if="this.msg != null ">
         <p>{{msg}}</p>
@@ -43,12 +41,6 @@ export default {
     };
   },
   methods: {
-    progress(event, progress, stepValue) {
-      console.log(stepValue);
-    },
-    progress_end(event) {
-      console.log("Circle progress end");
-    }
   }
 };
 </script>
