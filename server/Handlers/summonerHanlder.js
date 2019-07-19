@@ -47,7 +47,8 @@ async function getTfTData (summonerName,server) {
     const summoner = {
         id: data.id,
         accId: data.accountId,
-        name: data.name
+        name: data.name,
+        icon: data.profileIconId
     }    
     const allLeagues = await lolApi.getAllLeagueEntries([summoner.id],server)
     const tftLeague = allLeagues.filter(league => league.queueType === "RANKED_TFT")
@@ -60,6 +61,7 @@ async function getTfTData (summonerName,server) {
         hotStreak : tftLeague[0].hotStreak,
         name: tftLeague[0].summonerName,
         leaguePoints: tftLeague[0].leaguePoints,
+        iconId: summoner.icon
     }
     return returnStat;
 
