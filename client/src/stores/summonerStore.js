@@ -14,6 +14,8 @@ const summonerStore = {
       summoner.rank = response.data.rank
       summoner.hotStreak = response.data.hotStreak
       summoner.leaguePoints = response.data.leaguePoints
+      summoner.iconId = response.data.iconId
+
       return summoner
     }
   }

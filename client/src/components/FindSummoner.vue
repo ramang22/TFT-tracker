@@ -6,7 +6,7 @@
           <table>
             <tr>
               <td>
-                <img class="profilepic" src="../assets/profilepic.png" />
+                <img class="profilepic" v-bind:src='"http://localhost:3000/public/img/profileicon/"+summoner.iconId+".png"' />
               </td>
               <td>
                 <h3>{{summoner.name}}</h3>
