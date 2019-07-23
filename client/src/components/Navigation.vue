@@ -1,7 +1,7 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link>
-    <router-link to="/DPSstats">DPSstats</router-link>
+     <router-link to="/dps">DPS</router-link>
   </nav>
 </template>
 
@@ -16,7 +16,6 @@ export default {
 nav {
   background: #333;
   color: white;
-  margin-bottom: 20px;
   padding: 20px 10%;
   width:80%;
   text-align: center;

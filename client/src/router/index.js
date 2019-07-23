@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import findSummoner from '@/components/FindSummoner'
-import DPSstats from '@/components/DPSstats'
+import dpsstats from '@/components/Dpsstats'
+
 
 Vue.use(Router)
 
@@ -13,9 +14,9 @@ export default new Router({
       component: findSummoner
     },
     {
-        path: '/DPSstats',
-        name: 'DPSstats',
-        component: DPSstats
-      }
+      path: '/dps',
+      name: 'dpsstats',
+      component: dpsstats
+    }
   ]
 })
