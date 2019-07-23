@@ -2,4 +2,4 @@
 
 ## Run
 
-run server.js in you IDE OR node server.js OR nodemon server.js
+run server.js in your IDE OR node server.js OR nodemon server.js
