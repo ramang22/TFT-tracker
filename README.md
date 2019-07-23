@@ -1,28 +1,16 @@
-# riotAPInodeServer
-Server side of client server node app with RiotGames League API Restcalls.
+# TFT Tracker
+Web app that tracks player Teamfight tactic score.
 
-## test link
+## Setup
 
-http://localhost:3000/users/{yourSummonerName}
+1. Instal node, npm
+2. Run build script
 
-## node moduels
-fastify
-request
-request-promise
-nodeamon
+## Run
+1. Run server
+2. Run client
+3. [Here you can find app](http://localhost:8080) //http://localhost:8080
 
-## usefull links????
-
-### js
-https://github.com/systeme-cardinal/Pyke
-https://github.com/cnguy/kayn
-
-### python
-https://github.com/meraki-analytics/cassiopeia
-https://github.com/Canisback/pantheon
-
-### no clue atm
-https://github.com/Pupix/rift-explorer
 
 ### ideas 
 https://docs.google.com/document/d/1kj31M5XFwR9XKXo_H6KMMUIQzp84xUuIsXHlCDgaKr8/edit?usp=sharing
