@@ -1,0 +1,131 @@
+echo -----------------------------------------------------------------
+echo 
+echo build script https://github.com/ramang22/riotAPInodeServer.git
+echo 
+echo "hladam npm"
+
+while [ `npm -v | grep -e "[0-9].[0-9]" -c` = 0 ]
+	do
+	echo "nemas npm"
+	echo "tvoj OS je Windows ???"
+	read -r -p "[y/n]" response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+		    curl https://nodejs.org/dist/v10.16.0/node-v10.16.0-x64.msi > node.msi
+		    cmd //c start node.msi
+            ;;
+        *)
+            echo tak pouzi svoj package manager a stiahni si npm
+            ;;
+    esac
+	echo "pleas install npm and then press any key to continue"
+	read
+	done
+echo
+echo "OK"
+echo -----------------------------------------------------------------
+echo "hladam node"
+
+while [ `node -v | grep -e "[0-9].[0-9]" -c` = 0 ]
+	do
+	echo "nemas node"
+	echo "tvoj OS je Windows ???"
+	read -r -p "[y/n] " response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+		    curl https://nodejs.org/dist/v10.16.0/node-v10.16.0-x64.msi > node.msi
+		    cmd //c start node.msi
+            ;;
+        *)
+            echo tak pouzi svoj package manager a stiahni si node
+            ;;
+    esac
+	echo "pleas install node and then press any key to continue"
+	read
+	done
+echo
+echo "OK"
+echo
+echo "*****************************************************************"
+echo "nastavujem server"
+echo
+
+	
+cd server
+echo -----------------------------------------------------------------
+echo "npm install"
+npm_server=`npm install`
+if [ "$?" != "0" ]; then
+	echo "ERROR server npm install: $npm_server"
+	exit 1
+fi 
+echo 
+echo OK
+echo 
+echo -----------------------------------------------------------------
+echo "skusam pustit server"
+server=`timeout 5s node server.js`
+if [ "$?" != "124" ]; then
+	echo "ERROR server: $server"
+	exit 1
+fi 
+echo "server OK"
+cd ..
+cd client
+
+echo "****************************************************************"
+echo "nastavujem clineta"
+echo
+echo -----------------------------------------------------------------
+echo "npm install"
+npm_client=`npm install`
+if [ "$?" != "0" ]; then
+	echo "ERROR client npm install: $npm_client"
+	exit 1
+fi 
+echo 
+echo OK
+echo 
+echo -----------------------------------------------------------------
+echo "nastavujem lint"
+lint=`npm run lint`
+echo
+echo -----------------------------------------------------------------
+echo "robim build"
+build=`npm run build`
+if [ "$?" != "0" ]; then
+	echo "ERROR client lint: $build"
+	exit 1
+fi 
+echo OK
+echo
+echo -----------------------------------------------------------------
+echo "pustam serve cli"
+client=`timeout 20s npm run dev`
+if [ "$?" != "124" ]; then
+	echo "ERROR client: $client"
+	exit 1
+fi 
+echo "*****************************************************************"
+echo "vsetko je OK"
+
+echo "pre zapnutie serveru:"
+echo 
+echo "presun sa s konzolov do priecinka \"server\""
+echo "node server.js"
+echo
+echo pre zapnutie cli:
+echo 
+echo "presun sa s konzolov do priecinka \"client\""
+echo "npm run dev"
+exit 0
+
+
+
+
+
+
+
+
+
+	
