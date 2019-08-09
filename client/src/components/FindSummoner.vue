@@ -1,12 +1,17 @@
 <template>
   <div>
     <div v-if="searchPressed === true">
-      <div class="flex-container" id="playerNavBar">
+        <div v-if="loading === true">
+             <img class="logo" src="../assets/load.gif" />
+             <h2>Loading.....</h2>
+        </div>
+        <div v-else>
+            <div class="flex-container" id="playerNavBar">
         <div>
           <table>
             <tr>
               <td>
-                <img class="profilepic" v-bind:src='"http://localhost:3000/public/img/profileicon/"+summoner.iconId+".png"' />
+                <img class="profilepic" v-bind:src='"http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/"+summoner.iconId+".jpg"' />
               </td>
               <td>
                 <h3>{{summoner.name}}</h3>
@@ -65,6 +70,8 @@
       </div>
     </div>
 
+        </div>
+
     <div v-else>
       <img class="logo" src="../assets/tftlogo.jpeg" />
       <div>
@@ -77,6 +84,7 @@
         <input v-model="inputSummoner" v-on:keyup.13="findSummoner(inputSummoner,region)" />
         <button v-on:click="findSummoner(inputSummoner,region)">Find Summoner</button>
       </div>
+
     </div>
   </div>
 </template>
@@ -90,6 +98,7 @@ export default {
   data() {
     return {
       searchPressed: false,
+      loading: true,
       summoner: {},
     };
   },
@@ -99,9 +108,14 @@ export default {
 
   methods: {
     async findSummoner(name,region) {
-      const response = await axios.get("http://localhost:3000/users/" + name+"/"+region);
-      this.summoner = summonerStore.methods.saveSummoner(response);
-      this.searchPressed = true;
+        this.searchPressed = true;
+        var that = this
+        const response = await axios.get("http://localhost:3000/users/" + name+"/"+region);
+        this.summoner = summonerStore.methods.saveSummoner(response);
+        setTimeout(function() {
+            that.loading = false;
+        }, 1*1000);
+
     }
   }
 };
