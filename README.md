@@ -1,5 +1,5 @@
 # TFT Tracker
-Web app that tracks player Teamfight tactic score.
+Basic web app build with vue and node js. App is using riot games league api to get information about player and his matches. This project is not finished because lack of riot api support for teamfight tactics game mmode.
 
 ## Setup
 
